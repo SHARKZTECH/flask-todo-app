@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content%}
+<div class="ui container">
+<h1 class="ui center aligned header">TODO APP</h1>
+
+<form class="ui form" method="POST">
+	
+	{{ form.hidden_tag() }}
+	{{form.title.label}}
+	<br>	
+	{{form.title}}
+	<br>	
+	{{form.submit(class="ui blue button")}}
+	<br>
+</form>
+
+<div >
+
+	{% for todo in todo_list %}
+	<div class="ui segment">
+    <div class="ui big header">
+	{{todo.title}}
+	</div>
+     
+	{% if todo.status==False%}
+	<span class="ui gray label">Not completed</span>
+	{%else%}
+	<span class="ui green label">Completed</span>
+	{%endif%}
+ 	<a class="ui blue button" href="/update/{{todo.id}}">Update</a>
+	<a class="ui red button" href="/delete/{{todo.id}}">Delete</a>
+     
+     </div>
+	{%endfor%}
+    
+</div>
+
+</div>
+
+{% endblock%}
